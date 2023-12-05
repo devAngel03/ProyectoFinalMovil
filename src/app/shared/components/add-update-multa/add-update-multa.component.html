@@ -1,0 +1,88 @@
+<app-header [isModal]="true" title="Agregar Multa"> </app-header>
+
+<ion-content>
+
+    <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+        <!-- ==== Si existe una imagen ====-->
+        <ion-avatar *ngIf="form.value.image">
+            <img [src]="form.value.image" />
+        </ion-avatar>
+
+        <!-- ==== Si no existe una imagen ====-->
+        <ion-icon class="image-icon" *ngIf="!form.value.image" name="image-outline"></ion-icon>
+
+        <br>
+
+        <!-- ======= Tomar/Selecionar una imagen =======-->
+        <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+            Tomar/Seleccionar
+        </ion-button>
+
+        <!--========== Cedula ==========-->
+        <app-custom-input [control]="form.controls.cedula" type="number"
+            label="Cedula"></app-custom-input>
+    
+        <div class="validators" *ngIf="form.controls.cedula.errors && form.controls.cedula.touched">
+            <div *ngIf="form.controls.cedula.errors?.['required']">Este campo es requerido</div>
+            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
+        </div>
+
+        <!--========== Placa ==========-->
+        <app-custom-input [control]="form.controls.placa" type="text"
+            label="Placa"></app-custom-input>
+    
+        <div class="validators" *ngIf="form.controls.placa.errors && form.controls.placa.touched">
+            <div *ngIf="form.controls.placa.errors?.['required']">Este campo es requerido</div>
+            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
+        </div>
+
+        <!--========== Motivo ==========-->
+        <app-custom-input [control]="form.controls.motivo" type="textarea"
+            label="Motivo"></app-custom-input>
+    
+        <div class="validators" *ngIf="form.controls.motivo.errors && form.controls.motivo.touched">
+            <div *ngIf="form.controls.motivo.errors?.['required']">Este campo es requerido</div>
+            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
+        </div>
+
+        <!--========== Imagen ==========-->
+        <app-custom-input [control]="form.controls.image" type="text"
+            label="Foto"></app-custom-input>
+    
+
+        <!--========== Comentario ==========-->
+        <app-custom-input [control]="form.controls.comment" type="textarea"
+            label="Comentario"></app-custom-input>
+  
+
+        <!--========== audio ==========-->
+        <app-custom-input [control]="form.controls.audio" type="text"
+            label="Nota de voz"></app-custom-input>
+    
+
+        <!--========== Latitud ==========-->
+        <app-custom-input [control]="form.controls.latitud" type="number"
+            label="Latitud"></app-custom-input>
+    
+        <div class="validators" *ngIf="form.controls.latitud.errors && form.controls.latitud.touched">
+            <div *ngIf="form.controls.latitud.errors?.['required']">Este campo es requerido</div>
+            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
+        </div>
+
+        <!--========== Longitud ==========-->
+        <app-custom-input [control]="form.controls.longitud" type="number"
+            label="Longitud"></app-custom-input>
+    
+        <div class="validators" *ngIf="form.controls.longitud.errors && form.controls.longitud.touched">
+            <div *ngIf="form.controls.longitud.errors?.['required']">Este campo es requerido</div>
+            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
+        </div>
+
+        <ion-button mode="ios" class="ion-margin" type="submit" [disabled]="form.invalid">
+          Agregar Multa
+          <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+
+    </form>
+</ion-content>
