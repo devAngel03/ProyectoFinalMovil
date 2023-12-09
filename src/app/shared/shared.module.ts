@@ -6,6 +6,8 @@ import { LogoComponent } from './components/logo/logo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { AddUpdateMultaComponent } from './components/add-update-multa/add-update-multa.component';
+import { AddUpdateLicenseComponent } from './components/add-update-license/add-update-license.component';
+
 
 
 
@@ -14,14 +16,17 @@ import { AddUpdateMultaComponent } from './components/add-update-multa/add-updat
     HeaderComponent,
     CustomInputComponent,
     LogoComponent,
-    AddUpdateMultaComponent
+    AddUpdateMultaComponent,
+    AddUpdateLicenseComponent
   ],
   exports: [
     HeaderComponent,
     CustomInputComponent,
     LogoComponent,
     ReactiveFormsModule,
-    AddUpdateMultaComponent
+    AddUpdateMultaComponent,
+    AddUpdateLicenseComponent
+
   ],
   imports: [
     CommonModule,

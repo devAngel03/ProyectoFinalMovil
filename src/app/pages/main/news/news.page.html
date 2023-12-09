@@ -1,0 +1,25 @@
+<app-header [showMenu]="true" title="Noticias"></app-header>
+
+<ion-content class="ion-padding-top ion-text-center">
+  <div class="wordpress-news">
+    <img src="assets/images/ted.png" alt="Logo de WordPress" style="max-width: 200px; margin-top: 20px; margin-left: 30px;"/>
+  
+    <h2 style=" margin-top: 20px; margin-left: 30px;">Últimas Noticias</h2>
+  
+   
+    <ion-card *ngFor="let post of posts.slice(0, 3); let i = index">
+      <a [href]="post.link" target="_blank" style="color: inherit; text-decoration: none;">
+      <img [src]="post.jetpack_featured_media_url" alt="Imagen del artículo" />
+      <ion-card-header>
+        <ion-card-title>{{ post.title.rendered }}</ion-card-title>
+  
+      </ion-card-header>
+    
+      <ion-card-content>
+        <div [innerHTML]="post.excerpt.rendered"  ></div>
+      </ion-card-content>
+    </a>
+    </ion-card>
+
+  </div>
+</ion-content>

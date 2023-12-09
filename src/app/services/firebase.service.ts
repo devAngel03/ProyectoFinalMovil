@@ -8,8 +8,9 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { User } from '../models/user.mode';
+import { License } from '../models/licence.mode';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import {getFirestore, setDoc, doc, getDoc} from '@angular/fire/firestore'
+import { Firestore ,getFirestore, collection, setDoc, doc, getDoc, addDoc} from '@angular/fire/firestore'
 import { UtilsService } from './utils.service';
 
 @Injectable({
@@ -20,6 +21,8 @@ export class FirebaseService {
   auth = inject(AngularFireAuth);
   firestore = inject(AngularFirestore)
   utilsSvc = inject(UtilsService);
+  fires = inject(Firestore);
+  
 
 
   // =====================Autenticacion====================
@@ -53,6 +56,12 @@ export class FirebaseService {
     localStorage.removeItem('user');
     this.utilsSvc.routerLink('/auth');
   }
+
+  addLicense(license: License) {
+    const licenseRef = collection(this.fires, 'license');
+    return addDoc(licenseRef, license);
+  }
+ 
 
 
   //========================= Base de Datos ===================

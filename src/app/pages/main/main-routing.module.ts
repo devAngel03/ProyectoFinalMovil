@@ -18,8 +18,35 @@ const routes: Routes = [
         loadChildren: () =>
           import('./profile/profile.module').then((m) => m.ProfilePageModule),
       },
+      {
+        path: 'car',
+        loadChildren: () => import('./car/car.module').then( m => m.CarPageModule)
+      },
+      {
+        path: 'license',
+        loadChildren: () => import('./license/license.module').then( m => m.LicensePageModule)
+      },
+      {
+        path: 'penalty',
+        loadChildren: () => import('./penalty/penalty.module').then( m => m.PenaltyPageModule)
+      },
+      {
+        path: 'license',
+        loadChildren: () => import('./license/license.module').then( m => m.LicensePageModule)
+      },
+      {
+        path: 'news',
+        loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
+      },
+      {
+        path: 'zodiac',
+        loadChildren: () => import('./zodiac/zodiac.module').then( m => m.ZodiacPageModule)
+      },
     ],
   },
+  
+  
+
 ];
 
 @NgModule({
