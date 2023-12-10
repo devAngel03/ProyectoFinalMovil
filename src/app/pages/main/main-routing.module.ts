@@ -35,6 +35,10 @@ const routes: Routes = [
         loadChildren: () => import('./license/license.module').then( m => m.LicensePageModule)
       },
       {
+        path: 'weather',
+        loadChildren: () => import('./weather/weather.module').then( m => m.WeatherPageModule)
+      },
+      {
         path: 'news',
         loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
       },
