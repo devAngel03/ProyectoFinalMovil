@@ -8,5 +8,6 @@ export const environment = {
     storageBucket: "p-final-movil.appspot.com",
     messagingSenderId: "348096826808",
     appId: "1:348096826808:web:5cf8f58c51baa215c7d34d"
-  }
+  },
+  mapsKey: 'AIzaSyDnaiZL9ARMLcMItzACqEJFB-9KKRh-1tk'
 };

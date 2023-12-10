@@ -23,6 +23,7 @@ import {
   collectionData,
   query,
   where,
+  docData
 } from '@angular/fire/firestore';
 import { UtilsService } from './utils.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -118,6 +119,17 @@ export class FirebaseService {
     const carRef = collection(this.fires, 'car');
     return collectionData(carRef) as Observable<Car[]>;
   }
+
+
+   //====== Crud user=======
+
+  getUser(id): Observable<User[]> {
+    
+    const userRef = doc(this.fires, `users/${id}`);
+    return docData(userRef, {idField: 'id'}) as Observable<User[]>;
+  }
+  
+  
 
   //========================= Base de Datos ===================
 

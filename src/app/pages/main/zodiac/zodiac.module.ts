@@ -8,6 +8,8 @@ import { ZodiacPageRoutingModule } from './zodiac-routing.module';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { ZodiacPage } from './zodiac.page';
 
 @NgModule({
@@ -16,6 +18,7 @@ import { ZodiacPage } from './zodiac.page';
     FormsModule,
     IonicModule,
     ZodiacPageRoutingModule,
+    HttpClientModule,
     SharedModule
   ],
   declarations: [ZodiacPage]

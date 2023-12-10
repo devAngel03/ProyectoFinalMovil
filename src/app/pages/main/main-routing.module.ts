@@ -48,6 +48,15 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'map',
+    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
+  },
+  {
+    path: 'modal-map',
+    loadChildren: () => import('./modal-map/modal-map.module').then( m => m.ModalMapPageModule)
+  },
+
   
   
 

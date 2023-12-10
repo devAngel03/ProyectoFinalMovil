@@ -16,6 +16,7 @@ export class MainPage implements OnInit {
     { title: 'Motivo', url: '/main/penalty', icon: 'albums-outline'},
     { title: 'Perfil', url: '/main/profile', icon: 'person-outline'},
     { title: 'Licencia', url: '/main/license', icon: 'card-outline'},
+    { title: 'Mapa', url: '/main/map', icon: 'map-outline'},
     { title: 'Vehiculo', url: '/main/car', icon: 'car-outline'},
     { title: 'Clima', url: '/main/weather', icon: 'cloud-outline'},
     { title: 'Noticias', url: '/main/news', icon: 'newspaper-outline'},
