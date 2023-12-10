@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { VoiceRecorder, RecordingData, GenericResponse, CurrentRecordingStatus } from 'capacitor-voice-recorder';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,9 @@ export class UtilsService {
   
     
   };
+
+
+
 
   // ============Loading===========
   loading() {
@@ -67,3 +71,5 @@ export class UtilsService {
   }
 
 }
+
+

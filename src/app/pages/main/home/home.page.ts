@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { Multa } from 'src/app/models/multa.mode';
 import { User } from 'src/app/models/user.mode';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -14,6 +15,8 @@ export class HomePage implements OnInit {
   firebaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService);
 
+  multa: Multa[] = []
+
   ngOnInit() {
   }
 
@@ -21,9 +24,29 @@ export class HomePage implements OnInit {
     return this.utilsSvc.getFromLocalStorage('user');
   }
 
-  //===== Cerrar Sesion =====
-  signOut() {
-    this.firebaseSvc.signOut();
+  ionViewWillEnter() {
+    this.getMulta();
+  }
+
+  getMulta() {
+    let path = `users/${this.user().uid}/multas`;
+
+    let sub =this.firebaseSvc.getCollectionData(path).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.multa =  res;
+        sub.unsubscribe();
+      }
+    })
+  }
+
+  play(mAudio) {
+    const base64Sound = mAudio;
+    const mimeType = 'audio/webm;codecs=opus';
+
+    const audioRef = new Audio(`data:${mimeType};base64,${base64Sound}`);
+    audioRef.oncanplaythrough = () => audioRef.play();
+    audioRef.load();
   }
 
   //======= Agregar o actualizar multa ======

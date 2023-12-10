@@ -4,21 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MainPageRoutingModule } from './main-routing.module';
+import { WeatherPageRoutingModule } from './weather-routing.module';
 
-import { MainPage } from './main.page';
+import { WeatherPage } from './weather.page';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MainPageRoutingModule,
-    SharedModule,
-    HttpClientModule,
+    WeatherPageRoutingModule,
+    SharedModule
   ],
-  declarations: [MainPage]
+  declarations: [WeatherPage]
 })
-export class MainPageModule {}
+export class WeatherPageModule {}

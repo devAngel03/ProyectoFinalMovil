@@ -38,13 +38,21 @@
         </div>
 
         <!--========== Motivo ==========-->
-        <app-custom-input [control]="form.controls.motivo" type="textarea"
+        <!-- <app-custom-input [control]="form.controls.motivo" type="textarea"
             label="Motivo"></app-custom-input>
-    
+     -->
+        <ion-item>
+            <ion-select label="Motivo" [formControl]="form.controls.motivo" value="peperoni" interface="action-sheet" placeholder="Seleccionar motivo">
+                <ion-select-option *ngFor="let motive of motives" value={{motive.motivo}}>{{motive.motivo}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
         <div class="validators" *ngIf="form.controls.motivo.errors && form.controls.motivo.touched">
             <div *ngIf="form.controls.motivo.errors?.['required']">Este campo es requerido</div>
             <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
         </div>
+
+        
 
         <!--========== Comentario ==========-->
         <app-custom-input [control]="form.controls.comment" type="textarea"
@@ -52,29 +60,24 @@
   
 
         <!--========== audio ==========-->
-        <app-custom-input [control]="form.controls.audio" type="text"
-            label="Nota de voz"></app-custom-input>
+        <ion-label position="floating">Grabar Audio</ion-label>
+        <br>
+        <ion-button (click)="recorder()" mode="ios" shape="round">
+            Grabar
+            <ion-icon slot="end" name="mic-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="stop()" mode="ios"  shape="round">
+            Detener
+            <ion-icon slot="end" name="stop-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="play()" mode="ios"  shape="round">
+            Play
+            <ion-icon slot="end" name="play-circle-outline"></ion-icon>
+        </ion-button>
+        
     
 
-        <!--========== Latitud ==========-->
-        <app-custom-input [control]="form.controls.latitud" type="number"
-            label="Latitud"></app-custom-input>
-    
-        <div class="validators" *ngIf="form.controls.latitud.errors && form.controls.latitud.touched">
-            <div *ngIf="form.controls.latitud.errors?.['required']">Este campo es requerido</div>
-            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
-        </div>
-
-        <!--========== Longitud ==========-->
-        <app-custom-input [control]="form.controls.longitud" type="number"
-            label="Longitud"></app-custom-input>
-    
-        <div class="validators" *ngIf="form.controls.longitud.errors && form.controls.longitud.touched">
-            <div *ngIf="form.controls.longitud.errors?.['required']">Este campo es requerido</div>
-            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
-        </div>
-
-        <ion-button mode="ios" class="ion-margin" type="submit" [disabled]="form.invalid">
+        <ion-button mode="ios" class="ion-margin" expand="block" type="submit" [disabled]="form.invalid">
           Agregar Multa
           <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
         </ion-button>

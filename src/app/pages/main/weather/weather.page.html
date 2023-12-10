@@ -1,0 +1,17 @@
+<app-header [showMenu]="true" title="Clima"> </app-header>
+
+<ion-content class="ion-padding ion-text-center">
+  <div *ngIf="weatherData">
+    <h2>{{ weatherData.name }} - {{ weatherData.weather[0].description }}</h2>
+    <p>Temperatura: {{ weatherData.main.temp }} °C</p>
+    <p>Humedad: {{ weatherData.main.humidity }} %</p>
+    <p>Viento: {{ weatherData.wind.speed }} m/s</p>
+  
+    <button (click)="updateWeatherData()" expand="block" mode="ios" color="primary">
+      Actualizar
+      <ion-icon slot="end" name="cloud-outline"></ion-icon>
+    </button>
+  </div>
+</ion-content>
+
+
