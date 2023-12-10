@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { AddUpdateMultaComponent } from './components/add-update-multa/add-update-multa.component';
 import { AddUpdateLicenseComponent } from './components/add-update-license/add-update-license.component';
-
+import { AddUpdateMotiveComponent } from './components/add-update-motive/add-update-motive.component';
 
 
 
@@ -17,7 +17,8 @@ import { AddUpdateLicenseComponent } from './components/add-update-license/add-u
     CustomInputComponent,
     LogoComponent,
     AddUpdateMultaComponent,
-    AddUpdateLicenseComponent
+    AddUpdateLicenseComponent,
+    AddUpdateMotiveComponent
   ],
   exports: [
     HeaderComponent,
@@ -25,7 +26,9 @@ import { AddUpdateLicenseComponent } from './components/add-update-license/add-u
     LogoComponent,
     ReactiveFormsModule,
     AddUpdateMultaComponent,
-    AddUpdateLicenseComponent
+    AddUpdateLicenseComponent,
+    AddUpdateMotiveComponent
+
 
   ],
   imports: [

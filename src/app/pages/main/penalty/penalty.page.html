@@ -1,13 +1,22 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>penalty</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [showMenu]="true" title="Motivo"></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">penalty</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+      
+  <ion-card *ngFor="let motive of motives">
+    <ion-card-header>
+      <ion-card-title>{{motive.motivo}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+       <b>Detalle:</b>{{motive.detalle}}
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addUpdateMotivo()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
 </ion-content>

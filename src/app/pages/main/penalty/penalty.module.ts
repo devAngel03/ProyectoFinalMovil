@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { PenaltyPageRoutingModule } from './penalty-routing.module';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+
 import { PenaltyPage } from './penalty.page';
 
 @NgModule({
@@ -13,7 +15,8 @@ import { PenaltyPage } from './penalty.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PenaltyPageRoutingModule
+    PenaltyPageRoutingModule,
+    SharedModule
   ],
   declarations: [PenaltyPage]
 })

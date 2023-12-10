@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth';
 import { User } from '../models/user.mode';
 import { License } from '../models/licence.mode';
+import { Motivo } from '../models/motivo.mode';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import { Firestore ,getFirestore, collection, setDoc, doc, getDoc, addDoc, collectionData, query, where} from '@angular/fire/firestore'
 import { UtilsService } from './utils.service';
@@ -72,9 +73,21 @@ export class FirebaseService {
   }
   
   
-  getLicense() {
+  getLicense(): Observable<License[]> {
     const licenseRef = collection(this.fires, 'license');
-    return collectionData(licenseRef);    
+    return collectionData(licenseRef) as Observable<License[]>;    
+  }
+
+   //====== Crud Motivo=======
+
+   addMotive(motive: Motivo) {
+    const motiveRef = collection(this.fires, 'motive');
+    return addDoc(motiveRef, motive);
+  }
+
+  getMotive(): Observable<Motivo[]> {
+    const motiveRef = collection(this.fires, 'motive');
+    return collectionData(motiveRef) as Observable<Motivo[]>;    
   }
   
 
