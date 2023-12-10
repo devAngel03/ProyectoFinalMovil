@@ -13,6 +13,7 @@ export class AddUpdateLicenseComponent  implements OnInit {
 
   form = new FormGroup({
     image:  new FormControl(''),
+    cedula:  new FormControl('', [Validators.required]),
     nombre:  new FormControl('', [Validators.required]),
     apellido:  new FormControl('', [Validators.required]),
     fecha:  new FormControl('', [Validators.required]),
