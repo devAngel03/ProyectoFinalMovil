@@ -1,13 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>zodiac</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [showMenu]="true" title="Horoscopo"></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">zodiac</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+ 
+  <ion-card *ngIf="horoscopo">
+    <ion-card-header>
+      <ion-card-title>{{signo}}</ion-card-title>
+      <ion-card-subtitle></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{ horoscopo[0].horoscope_data }}
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

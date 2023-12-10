@@ -1,0 +1,15 @@
+.container{
+    height: 100%;
+    width: 100%;
+}
+
+capacitor-google-map{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+ion-content{
+    --backgroung: none;
+}

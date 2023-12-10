@@ -11,7 +11,7 @@ import { User } from '../models/user.mode';
 import { License } from '../models/licence.mode';
 import { Motivo } from '../models/motivo.mode';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import { Firestore ,getFirestore, collection, setDoc, doc, getDoc, addDoc, collectionData, query, where} from '@angular/fire/firestore'
+import { Firestore ,getFirestore, collection, setDoc, doc, getDoc, addDoc, collectionData, query, where, docData} from '@angular/fire/firestore'
 import { UtilsService } from './utils.service';
 import { Observable } from 'rxjs';
 
@@ -89,6 +89,14 @@ export class FirebaseService {
     const motiveRef = collection(this.fires, 'motive');
     return collectionData(motiveRef) as Observable<Motivo[]>;    
   }
+
+   //====== Crud user=======
+
+   getUser(id): Observable<User[]> {
+    const userRef = doc(this.fires, `users/${id}`);
+    return docData(userRef, {idField: 'id'}) as Observable<User[]>;
+  }
+  
   
 
   //========================= Base de Datos ===================

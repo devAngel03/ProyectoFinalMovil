@@ -43,7 +43,15 @@ const routes: Routes = [
         loadChildren: () => import('./zodiac/zodiac.module').then( m => m.ZodiacPageModule)
       },
     ],
+  },  {
+    path: 'map',
+    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
   },
+  {
+    path: 'modal-map',
+    loadChildren: () => import('./modal-map/modal-map.module').then( m => m.ModalMapPageModule)
+  },
+
   
   
 
