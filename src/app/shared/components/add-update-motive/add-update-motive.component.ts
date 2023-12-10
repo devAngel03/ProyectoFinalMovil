@@ -14,6 +14,7 @@ export class AddUpdateMotiveComponent  implements OnInit {
   form = new FormGroup({
   
     motivo:  new FormControl('', [Validators.required]),
+    precio:  new FormControl(0 , [Validators.required]),
     detalle:  new FormControl('', [Validators.required]),
   
   });
