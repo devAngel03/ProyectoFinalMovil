@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
   }
 
   getMulta() {
-    let path = `users/${this.user().uid}/multas`;
+    let path = `multas`;
 
     let sub =this.firebaseSvc.getCollectionData(path).subscribe({
       next: (res: any) => {
