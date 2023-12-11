@@ -1,86 +1,139 @@
 <app-header [isModal]="true" title="Agregar Multa"> </app-header>
 
 <ion-content>
+  <form
+    [formGroup]="form"
+    class="ion-padding ion-text-center"
+    (ngSubmit)="submit()"
+    (keypress.enter)="submit()"
+  >
+    <!-- ==== Si existe una imagen ====-->
+    <ion-avatar *ngIf="form.value.image">
+      <img [src]="form.value.image" />
+    </ion-avatar>
 
-    <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+    <!-- ==== Si no existe una imagen ====-->
+    <ion-icon
+      class="image-icon"
+      *ngIf="!form.value.image"
+      name="image-outline"
+    ></ion-icon>
 
-        <!-- ==== Si existe una imagen ====-->
-        <ion-avatar *ngIf="form.value.image">
-            <img [src]="form.value.image" />
-        </ion-avatar>
+    <br />
 
-        <!-- ==== Si no existe una imagen ====-->
-        <ion-icon class="image-icon" *ngIf="!form.value.image" name="image-outline"></ion-icon>
+    <!-- ======= Tomar/Selecionar una imagen =======-->
+    <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+      Tomar/Seleccionar
+    </ion-button>
 
-        <br>
+    <!--========== Cedula ==========-->
 
-        <!-- ======= Tomar/Selecionar una imagen =======-->
-        <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
-            Tomar/Seleccionar
-        </ion-button>
+    <ion-item>
+      <ion-select
+        label="Cedula"
+        [formControl]="form.controls.cedula"
+        value="49382823982"
+        interface="action-sheet"
+        placeholder="Seleccionar una cedula"
+      >
+        <ion-select-option *ngFor="let license of licenses" value="{{ license.cedula }}">{{
+          license.cedula
+        }}</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-        <!--========== Cedula ==========-->
-        <app-custom-input [control]="form.controls.cedula" type="number"
-            label="Cedula"></app-custom-input>
-    
-        <div class="validators" *ngIf="form.controls.cedula.errors && form.controls.cedula.touched">
-            <div *ngIf="form.controls.cedula.errors?.['required']">Este campo es requerido</div>
-            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
-        </div>
+    <div
+      class="validators"
+      *ngIf="form.controls.cedula.errors && form.controls.cedula.touched"
+    >
+      <div *ngIf="form.controls.cedula.errors?.['required']">
+        Este campo es requerido
+      </div>
+    </div>
 
-        <!--========== Placa ==========-->
-        <app-custom-input [control]="form.controls.placa" type="text"
-            label="Placa"></app-custom-input>
-    
-        <div class="validators" *ngIf="form.controls.placa.errors && form.controls.placa.touched">
-            <div *ngIf="form.controls.placa.errors?.['required']">Este campo es requerido</div>
-            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
-        </div>
+    <!--========== Placa ==========-->
 
-        <!--========== Motivo ==========-->
-        <!-- <app-custom-input [control]="form.controls.motivo" type="textarea"
-            label="Motivo"></app-custom-input>
-     -->
-        <ion-item>
-            <ion-select label="Motivo" [formControl]="form.controls.motivo" value="peperoni" interface="action-sheet" placeholder="Seleccionar motivo">
-                <ion-select-option *ngFor="let motive of motives" value={{motive.motivo}}>{{motive.motivo}}</ion-select-option>
-            </ion-select>
-        </ion-item>
+    <ion-item>
+      <ion-select
+        label="Placa"
+        [formControl]="form.controls.placa"
+        value="A67372"
+        interface="action-sheet"
+        placeholder="Seleccionar una placa"
+      >
+        <ion-select-option *ngFor="let car of cars" value="{{ car.placa }}">{{
+          car.placa
+        }}</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-        <div class="validators" *ngIf="form.controls.motivo.errors && form.controls.motivo.touched">
-            <div *ngIf="form.controls.motivo.errors?.['required']">Este campo es requerido</div>
-            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
-        </div>
+    <div
+      class="validators"
+      *ngIf="form.controls.placa.errors && form.controls.placa.touched"
+    >
+      <div *ngIf="form.controls.placa.errors?.['required']">
+        Este campo es requerido
+      </div>
+    </div>
 
-        
+    <!--========== Motivo ==========-->
+    <ion-item>
+      <ion-select
+        label="Motivo"
+        [formControl]="form.controls.motivo"
+        value="Exceso de velocidad"
+        interface="action-sheet"
+        placeholder="Seleccionar motivo"
+      >
+        <ion-select-option
+          *ngFor="let motive of motives"
+          value="{{ motive.motivo }}"
+          >{{ motive.motivo }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
 
-        <!--========== Comentario ==========-->
-        <app-custom-input [control]="form.controls.comment" type="textarea"
-            label="Comentario"></app-custom-input>
-  
+    <div
+      class="validators"
+      *ngIf="form.controls.motivo.errors && form.controls.motivo.touched"
+    >
+      <div *ngIf="form.controls.motivo.errors?.['required']">
+        Este campo es requerido
+      </div>
+    </div>
 
-        <!--========== audio ==========-->
-        <ion-label position="floating">Grabar Audio</ion-label>
-        <br>
-        <ion-button (click)="recorder()" mode="ios" shape="round">
-            Grabar
-            <ion-icon slot="end" name="mic-circle-outline"></ion-icon>
-        </ion-button>
-        <ion-button (click)="stop()" mode="ios"  shape="round">
-            Detener
-            <ion-icon slot="end" name="stop-circle-outline"></ion-icon>
-        </ion-button>
-        <ion-button (click)="play()" mode="ios"  shape="round">
-            Play
-            <ion-icon slot="end" name="play-circle-outline"></ion-icon>
-        </ion-button>
-        
-    
+    <!--========== Comentario ==========-->
+    <app-custom-input
+      [control]="form.controls.comment"
+      type="textarea"
+      label="Comentario"
+    ></app-custom-input>
 
-        <ion-button mode="ios" class="ion-margin" expand="block" type="submit" [disabled]="form.invalid">
-          Agregar Multa
-          <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
-        </ion-button>
+    <!--========== audio ==========-->
+    <ion-label position="floating">Grabar Audio</ion-label>
+    <br />
+    <ion-button (click)="recorder()" mode="ios" shape="round">
+      Grabar
+      <ion-icon slot="end" name="mic-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="stop()" mode="ios" shape="round">
+      Detener
+      <ion-icon slot="end" name="stop-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="play()" mode="ios" shape="round">
+      Play
+      <ion-icon slot="end" name="play-circle-outline"></ion-icon>
+    </ion-button>
 
-    </form>
+    <ion-button
+      mode="ios"
+      class="ion-margin"
+      expand="block"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Agregar Multa
+      <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-button>
+  </form>
 </ion-content>

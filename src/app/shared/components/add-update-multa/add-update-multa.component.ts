@@ -5,6 +5,9 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Geolocation } from '@capacitor/geolocation';
 import { VoiceRecorder } from 'capacitor-voice-recorder';
+import { Car } from 'src/app/models/car.mode';
+import { License } from 'src/app/models/licence.mode';
+import { Motivo } from 'src/app/models/motivo.mode';
 
 @Component({
   selector: 'app-add-update-multa',
@@ -31,11 +34,11 @@ export class AddUpdateMultaComponent implements OnInit {
   firebaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService);
 
-  motives = [];
-  noencontrada = false;
+  motives: Motivo[] = [];
+  cars: Car[] = [];
+  licenses: License[] = [];
 
   user = {} as User;
-  motive = []
 
   constructor(private fireServise: FirebaseService) { }
 
@@ -45,21 +48,52 @@ export class AddUpdateMultaComponent implements OnInit {
     this.getDeviceLocation();
     this.getDate();
 
-    this.fireServise.getMotive().subscribe(res => {
-      console.log(res);
-      this.motives = res;
-      if (this.motives.length == 0) {
-        this.noencontrada = true;
-      } else {
-        this.noencontrada = false;
-      }
-    });
-
-
     VoiceRecorder.hasAudioRecordingPermission().then((result) => {
       if (!result.value) {
         VoiceRecorder.requestAudioRecordingPermission();
       }
+    });
+  }
+
+  ionViewWillEnter() {
+    this.getCar();
+    this.getMotive();
+    this.getlicense();
+  }
+
+  getCar() {
+    let path = `car`;
+
+    let sub = this.firebaseSvc.getCollectionData(path).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.cars = res;
+        sub.unsubscribe();
+      },
+    });
+  }
+
+  getMotive() {
+    let path = `motive`;
+
+    let sub = this.firebaseSvc.getCollectionData(path).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.motives = res;
+        sub.unsubscribe();
+      },
+    });
+  }
+
+  getlicense() {
+    let path = `license`;
+
+    let sub = this.firebaseSvc.getCollectionData(path).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.licenses = res;
+        sub.unsubscribe();
+      },
     });
   }
 
@@ -84,14 +118,11 @@ export class AddUpdateMultaComponent implements OnInit {
       if (result.value) {
         var recordData = result.value.recordDataBase64;
         this.form.controls.audio.setValue(recordData);
-        //this.saveFile(recordData);
       }
     });
   }
 
-  // saveFile(recordData: string) {
-  //   const fileName = ``
-  // }
+
 
   play() {
     const base64Sound = this.form.value.audio;
@@ -121,7 +152,7 @@ export class AddUpdateMultaComponent implements OnInit {
   async getDate() {
     const currentDate = new Date();
     const day = currentDate.getDate();
-    const month = currentDate.getMonth() + 1; // Nota: Los meses comienzan desde 0, por lo que sumamos 1
+    const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const formattedDate = `${day}/${month}/${year}`;
     this.form.controls.fecha.setValue(formattedDate);
@@ -139,7 +170,7 @@ export class AddUpdateMultaComponent implements OnInit {
 
   async submit() {
     if (this.form.valid) {
-      
+
       let path = `multas`;
 
       const loading = await this.utilsSvc.loading();

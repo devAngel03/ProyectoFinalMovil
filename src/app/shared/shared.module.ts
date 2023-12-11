@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddUpdateMultaComponent } from './components/add-update-multa/add-update-multa.component';
 import { AddUpdateLicenseComponent } from './components/add-update-license/add-update-license.component';
 import { AddUpdateMotiveComponent } from './components/add-update-motive/add-update-motive.component';
+import { AddUpdateCarComponent } from './components/add-update-car/add-update-car.component';
 
 
 
@@ -18,7 +19,8 @@ import { AddUpdateMotiveComponent } from './components/add-update-motive/add-upd
     LogoComponent,
     AddUpdateMultaComponent,
     AddUpdateLicenseComponent,
-    AddUpdateMotiveComponent
+    AddUpdateMotiveComponent,
+    AddUpdateCarComponent
   ],
   exports: [
     HeaderComponent,
@@ -27,7 +29,8 @@ import { AddUpdateMotiveComponent } from './components/add-update-motive/add-upd
     ReactiveFormsModule,
     AddUpdateMultaComponent,
     AddUpdateLicenseComponent,
-    AddUpdateMotiveComponent
+    AddUpdateMotiveComponent,
+    AddUpdateCarComponent
 
 
   ],

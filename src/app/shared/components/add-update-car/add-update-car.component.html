@@ -1,0 +1,51 @@
+<app-header [isModal]="true" title="Agregar Vehiculo"> </app-header>
+
+<ion-content>
+
+    <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="onSubmit()" (keypress.enter)="onSubmit()">
+
+         <!--========== Placa ==========-->
+         <app-custom-input [control]="form.controls.placa" type="text"
+         label="Placa"></app-custom-input>
+ 
+        <div class="validators" *ngIf="form.controls.placa.errors && form.controls.placa.touched">
+            <div *ngIf="form.controls.placa.errors?.['required']">Este campo es requerido</div>
+            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
+        </div>
+
+
+        <!--========== Marca ==========-->
+        <app-custom-input [control]="form.controls.marca" type="text"
+            label="Marca"></app-custom-input>
+    
+        <div class="validators" *ngIf="form.controls.marca.errors && form.controls.marca.touched">
+            <div *ngIf="form.controls.marca.errors?.['required']">Este campo es requerido</div>
+            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
+        </div>
+
+        <!--========== Modelo ==========-->
+        <app-custom-input [control]="form.controls.modelo" type="text"
+            label="Modelo"></app-custom-input>
+    
+        <div class="validators" *ngIf="form.controls.modelo.errors && form.controls.modelo.touched">
+            <div *ngIf="form.controls.modelo.errors?.['required']">Este campo es requerido</div>
+            <!--<div *ngIf="form.controls.cedula.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>-->
+        </div>
+
+        <!--========== Color ==========-->
+        <app-custom-input [control]="form.controls.color" type="text"
+            label="Color"></app-custom-input>
+    
+
+        <!--========== Año ==========-->
+        <app-custom-input [control]="form.controls.anio" type="number"
+            label="Año"></app-custom-input>
+    
+  
+        <ion-button mode="ios" class="ion-margin" type="submit" [disabled]="form.invalid" >
+          Agregar vehiculo
+          <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+
+    </form>
+</ion-content>

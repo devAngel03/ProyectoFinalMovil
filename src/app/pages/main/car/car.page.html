@@ -1,24 +1,38 @@
 <app-header [showMenu]="true" title="Vehiculo"></app-header>
 
-<ion-content class="ion-padding-top ion-text-center">
-
-  <ion-avatar>
-    <img *ngIf="user()?.image" [src]="user()?.image" />
-
-    <ion-icon *ngIf="!user()?.image" class="empty-icon" name="person-circle-outline"></ion-icon>
-  </ion-avatar>
-
-  <h2>{{user().name}}</h2>
-  <div>Agente</div>
-
-  <ion-item button detail>
-    <ion-icon color="primary" slot="start" name="person-outline"></ion-icon>
-    <ion-label>Editar Perfil</ion-label>
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Placa</ion-label>
+    <ion-input [(ngModel)]="placa"></ion-input>
   </ion-item>
+  <ion-button 
+        (click)="getCar()"
+        expand="block"  >Buscar
+  </ion-button>
 
-  <ion-item button detail>
-    <ion-icon color="primary" slot="start" name="document-outline"></ion-icon>
-    <ion-label>Terminos & Condiciones</ion-label>
-  </ion-item>
+  <ng-container *ngIf="noencontrada">
+    <p>Vehiculo no encontrada</p>
+  </ng-container>
+        
 
+  <ion-card *ngFor="let car of cars">
+    <ion-card-header>
+      <ion-card-title>{{car.placa}}</ion-card-title>
+      <ion-card-subtitle>{{car.anio}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <b>Marca:</b> {{car.marca}}<br>
+      <b>Modelo:</b>{{car.modelo}}<br>
+      <b>Color:</b>{{car.color}}
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addUpdateCar()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
 </ion-content>

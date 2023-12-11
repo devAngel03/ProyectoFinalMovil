@@ -121,6 +121,13 @@ export class FirebaseService {
     return collectionData(carRef) as Observable<Car[]>;
   }
 
+  getCarByPlaca(placa: string): Observable<Car[]> {
+    const carRef = collection(this.fires, 'car');
+    return collectionData(
+      query(carRef, where('cedula', '==', placa))
+    ) as Observable<Car[]>;
+  }
+
 
    //====== Crud user=======
 
@@ -179,9 +186,4 @@ export class FirebaseService {
     );
   }
 
-  async uploadAudio(path: string, base64: string) {
-    return uploadString(ref(getStorage(), path), base64, 'base64').then(() => {
-      return getDownloadURL(ref(getStorage(), path));
-    });
-  }
 }
