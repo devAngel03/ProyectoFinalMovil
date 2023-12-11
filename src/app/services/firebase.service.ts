@@ -11,6 +11,7 @@ import { User } from '../models/user.mode';
 import { License } from '../models/licence.mode';
 import { Motivo } from '../models/motivo.mode';
 import { Car } from '../models/car.mode'
+import { Multa } from '../models/multa.mode'
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
   Firestore,
@@ -128,6 +129,21 @@ export class FirebaseService {
     const userRef = doc(this.fires, `users/${id}`);
     return docData(userRef, {idField: 'id'}) as Observable<User[]>;
   }
+
+   //====== Crud Multa=======
+
+
+    getMultaById(id): Observable<Multa[]> {
+    
+      const multaRef = doc(this.fires, `multas/${id}`);
+      return docData(multaRef, {idField: 'id'}) as Observable<Multa[]>;
+    }
+
+    getMulta() {
+      const multaRef = collection(this.fires, 'multas');
+      return collectionData(multaRef, { idField: 'id' });
+    }
+
   
   
 

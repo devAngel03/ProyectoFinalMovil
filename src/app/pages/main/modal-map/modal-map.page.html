@@ -5,9 +5,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">modalMap</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ng-container *ngFor="let r of res">
+    <ion-card *ngIf="r.id === marker.title">
+      <img alt="Silhouette of mountains" [src]="r.image" />
+      <ion-card-header>
+        <ion-card-title>Cedula: {{r.cedula}}</ion-card-title>
+        <ion-card-subtitle>{{r.hora}} {{r.fecha}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <b>Motivo:</b> {{r.motivo}}<br>
+        <b>Comentario:</b> {{r.comment}} <br>
+        <button expand="block" mode="ios" fill="outline" (click)="play(r.audio)">Reproducir</button>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
 </ion-content>
