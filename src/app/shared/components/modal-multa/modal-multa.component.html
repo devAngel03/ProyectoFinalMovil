@@ -1,0 +1,18 @@
+<app-header [isModal]="true" title="Detalles Multa"> </app-header>
+
+<ion-content>
+  <ion-card>
+    <img alt="Silhouette of mountains"[src]="multa.image" />
+    <ion-card-header>
+      <ion-card-title>Cedula: {{multa.cedula}}</ion-card-title>
+      <ion-card-subtitle>{{multa.hora}} {{multa.fecha}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <b>Motivo:</b> {{multa.motivo}}<br>
+      <b>Comentario:</b>{{multa.comment}} <br>
+
+      <button expand="block" mode="ios" fill="outline" (click)="play(multa.audio)"> Reproducir</button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

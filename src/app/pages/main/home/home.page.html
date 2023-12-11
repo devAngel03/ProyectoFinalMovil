@@ -2,18 +2,11 @@
 
 <ion-content>
 
-  <ion-card *ngFor="let m of multa">
+  <ion-card  *ngFor="let m of multa" (click)="detalleMulta(m.id)">
     <img alt="Silhouette of mountains"[src]="m.image" />
     <ion-card-header>
       <ion-card-title>Cedula: {{m.cedula}}</ion-card-title>
-      <ion-card-subtitle>{{m.hora}} {{m.fecha}}</ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
-      <b>Motivo:</b> {{m.motivo}}<br>
-      <b>Comentario:</b>{{m.comment}} <br>
-
-      <button expand="block" mode="ios" fill="outline" (click)="play(m.audio)"> Reproducir</button>
-    </ion-card-content>
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
