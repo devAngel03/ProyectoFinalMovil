@@ -4,15 +4,14 @@
     <ion-buttons slot="start" [routerLink]="['/']">
       <ion-icon name="arrow-back-outline"> </ion-icon> Volver
     </ion-buttons>
-
-
     <ion-title>
       <strong>Mapa</strong>
       <div class="admin">D I G E S E T</div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+
+<ion-content class="mapContainer">
 <div class="container">
   <capacitor-google-map #map></capacitor-google-map>
  </div>
