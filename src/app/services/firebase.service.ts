@@ -124,7 +124,7 @@ export class FirebaseService {
   getCarByPlaca(placa: string): Observable<Car[]> {
     const carRef = collection(this.fires, 'car');
     return collectionData(
-      query(carRef, where('cedula', '==', placa))
+      query(carRef, where('placa', '==', placa))
     ) as Observable<Car[]>;
   }
 
