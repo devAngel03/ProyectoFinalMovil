@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user.mode';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AddUpdateMultaComponent } from 'src/app/shared/components/add-update-multa/add-update-multa.component';
+import { VoiceRecorder, VoiceRecorderPlugin, RecordingData, GenericResponse, CurrentRecordingStatus } from 'capacitor-voice-recorder';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,12 @@ export class HomePage implements OnInit {
   multa: Multa[] = []
 
   ngOnInit() {
+    debugger;
+    VoiceRecorder.hasAudioRecordingPermission().then(result => {
+     if (!result.value) {
+        VoiceRecorder.requestAudioRecordingPermission();
+      }
+    });
   }
 
   user(): User{
